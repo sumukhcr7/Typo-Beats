@@ -9,7 +9,7 @@ ThemeData colorPalatte() {
           bodyText2: TextStyle(color: Colors.grey),
           subtitle1: TextStyle(color: Colors.black),
           subtitle2: TextStyle(color: Colors.grey, fontSize: 14.0),
-          headline5: TextStyle(color: Colors.white),
+          headline5: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
           headline4: TextStyle(color: Colors.black)));
 }
 

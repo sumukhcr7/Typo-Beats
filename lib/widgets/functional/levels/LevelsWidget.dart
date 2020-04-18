@@ -1,6 +1,8 @@
+import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-2/Level2StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-3/Level3StartWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LevelsWidget extends StatefulWidget {
   final levelsModel;
@@ -126,7 +128,12 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                       ],
                                     )),
                                 onPressed: () {
-                                  // onClickOfLogout(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Level1StartWidget(store: store),
+                                      ));
                                 },
                               ))
                         ],
@@ -135,12 +142,12 @@ class LevelsWidgetState extends State<LevelsWidget> {
                 Flexible(
                     flex: 3,
                     child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.white38,
-                            borderRadius: BorderRadius.circular(20.0)),
-                                                  child: Column(
+                      height: 300,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Column(
                         children: <Widget>[
                           Container(
                             height: 200,
@@ -177,19 +184,73 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                       ],
                                     )),
                                 onPressed: () {
-                                  // onClickOfLogout(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Level2StartWidget(store: store),
+                                      ));
                                 },
                               ))
                         ],
-                      ),)),
+                      ),
+                    )),
                 Flexible(
                     flex: 3,
                     child: Container(
-                        height: 300,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.white38,
-                            borderRadius: BorderRadius.circular(20.0)))),
+                      height: 300,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: Colors.white38,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: 200,
+                            width: 300,
+                            child: Image.asset(
+                              'car.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          SizedBox(
+                              width: 150,
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(10.0)),
+                                elevation: 1,
+                                color: Theme.of(context).accentColor,
+                                textColor: Colors.white,
+                                child: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 12, bottom: 12),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          'Level 3',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        Icon(
+                                          Icons.play_arrow,
+                                          size: 20,
+                                        )
+                                      ],
+                                    )),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Level3StartWidget(store: store),
+                                      ));
+                                },
+                              ))
+                        ],
+                      ),
+                    )),
               ],
             ),
           ),
