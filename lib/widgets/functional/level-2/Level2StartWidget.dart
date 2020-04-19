@@ -1,6 +1,28 @@
 import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
+import 'package:flame/flame.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'GameArea.dart';
+import 'ball.dart';
+
+
+bool gameOver = false;
+const BALLSPEED = 120.0;
+const BULLETSPEED = 60.0;
+const BALL_SIZE = 120.0;
+const BULLET_SIZE = 20.0;
+
+var points = 0;
+Ball ball;
+// Bullet bullet;
+
+var game;
+
+bool bulletStartStop = false;
+
+double touchPositionDx = 0.0;
+double touchPositionDy = 0.0;
 class Level2StartWidget extends StatefulWidget {
   final levelsModel;
   final store;
@@ -142,7 +164,7 @@ class Level2StartWidgetState extends State<Level2StartWidget> {
                                       ],
                                     )),
                                 onPressed: () {
-                                  // onClickOfLogout(context);
+                                  level2GameMain();
                                 },
                               ))
                         ],
@@ -154,5 +176,114 @@ class Level2StartWidgetState extends State<Level2StartWidget> {
         ),
       ],
     ));
+  }
+}
+
+
+level2GameMain() async {
+  Flame.audio.disableLog();
+  // Flame.images.loadAll([ 'blueball.png']);
+
+  var dimensions = await Flame.util.initialDimensions();
+
+  game = new GameArea(dimensions);
+  runApp(MaterialApp(
+      home: Scaffold(
+          body: Container(
+    decoration: new BoxDecoration(color: Colors.black
+        // image: new DecorationImage(
+        //   image: new AssetImage("assets/images/background.jpg"),
+        //   fit: BoxFit.cover,
+        // ),
+        ),
+    child: GameWrapper(game),
+  ))));
+
+  HorizontalDragGestureRecognizer horizontalDragGestureRecognizer =
+      new HorizontalDragGestureRecognizer();
+
+  Flame.util.addGestureRecognizer(horizontalDragGestureRecognizer
+    ..onUpdate = (startDetails) => game.dragInput(startDetails.globalPosition));
+
+  Flame.util.addGestureRecognizer(new TapGestureRecognizer()
+    ..onTapDown = (TapDownDetails evt) => game.tapInput(evt.globalPosition));
+
+  // Adds onUP feature to fire bullets
+  Flame.util.addGestureRecognizer(new TapGestureRecognizer()
+    ..onTapUp = (TapUpDetails evt) => game.onUp(evt.globalPosition));
+}
+class GameWrapper extends StatefulWidget {
+  final GameArea game;
+  GameWrapper(this.game);
+  @override
+  GameWrapperState createState() => GameWrapperState(game);
+}
+
+class GameWrapperState extends State<GameWrapper> {
+  final GameArea game;
+  String textTyped;
+  
+  GameWrapperState(this.game);
+
+
+  final textClearController = TextEditingController();
+
+
+  clearTextInput() {
+    textClearController.clear();
+  }
+
+  handleChangeOfText(text) async {
+    print(text);
+    setState(() {
+      textTyped = text;
+    });
+    game.changeText(text, clearTextInput);
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            decoration: new BoxDecoration(color: Colors.black
+                // image: new DecorationImage(
+                //   image: new AssetImage("assets/images/background.jpg"),
+                //   fit: BoxFit.cover,
+                // ),
+                ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  height: MediaQuery.of(context).size.height - 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: game.widget,
+                ),
+                SizedBox(
+                    height: 80,
+                    width: 300,
+                    child: TextField(
+                   
+                      controller: textClearController,
+                        onChanged: (text) {
+                          handleChangeOfText(text);
+                        },
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: "Enter the text here",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 18)))),
+              ],
+            )));
   }
 }

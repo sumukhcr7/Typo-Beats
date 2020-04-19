@@ -29,6 +29,7 @@ dependencies:
   redux_thunk: ^0.3.0
   smooth_star_rating: 1.0.4+2
   flutter_svg: ^0.17.3+1
+  flame: ^0.9.5
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +48,7 @@ flutter:
   uses-material-design: true
   assets: 
       - assets/
+      - assets/assets/images/blueball.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
