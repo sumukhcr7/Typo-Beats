@@ -13,11 +13,10 @@ class Word extends SpriteComponent {
   double ypostion;
   bool isExplode;
   double maxY;
-
-  Sprite bgSprite;
-
+  bool isLengthEqualOfTypedAndRandom;
+  var previousPoints=0;
   Word(
-      this.dimenstions, this.postion, this.ypostion, this.word, this.isExplode);
+      this.dimenstions, this.postion, this.ypostion, this.word, this.isExplode, this.isLengthEqualOfTypedAndRandom);
 
   @override
   void render(Canvas canvas) {
@@ -35,28 +34,30 @@ class Word extends SpriteComponent {
 
   @override
   void update(double t) {
-    y += isExplode ? -1 : (t * BALLSPEED);
-    ypostion = isExplode ?-1:y;
+    y += isExplode||gameOver ? 0 : (t * BALLSPEED);
+    ypostion = isExplode||gameOver ?0:y;
   }
 
-  @override
   bool destroy() {
-    // if (explode) {
-    //   return true;
-    // }
-    // if (y == null || maxY == null) {
-    //   return false;
-    // }
-    // bool destroy = y >= maxY + BALL_SIZE / 2;
-    // if (destroy) {
-    //   gameOver = true;
+    if (isExplode) {
+      return true;
+    }
+    if (y == null || maxY == null) {
+      return false;
+    }
+    bool destroy = y >= maxY + BALL_SIZE / 2;
+    print("$previousPoints pints $points");
+    if (destroy==true&&previousPoints==points) {
+      gameOver = true;
 
-    //   print("Game over");
-    //   return true;
-    // }
-    return isExplode;
+      print("Game over");
+      return true;
+    }
+    else{
+      previousPoints=points;
+    }
+    return false;
   }
-
   @override
   void resize(Size size) {
     this.x = (BALL_SIZE * postion);

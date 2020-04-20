@@ -3,6 +3,7 @@ import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../getRandomWord.dart';
 import 'GameArea.dart';
 import 'ball.dart';
 
@@ -14,7 +15,9 @@ const BALL_SIZE = 120.0;
 const BULLET_SIZE = 20.0;
 
 var points = 0;
+// var previosPoints=0;
 Ball ball;
+bool isDestroyed=false;
 // Bullet bullet;
 
 var game;
@@ -238,6 +241,12 @@ class GameWrapperState extends State<GameWrapper> {
     setState(() {
       textTyped = text;
     });
+    
+    if(game.randomWord==text){
+     
+      game.isExplode=true;
+      game.typedTextArry.add(text);
+    }
     game.changeText(text, clearTextInput);
   }
 

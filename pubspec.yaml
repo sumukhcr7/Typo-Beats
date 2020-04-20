@@ -30,6 +30,7 @@ dependencies:
   smooth_star_rating: 1.0.4+2
   flutter_svg: ^0.17.3+1
   flame: ^0.9.5
+  random_words: ^1.0.2
 
 dev_dependencies:
   flutter_test:
