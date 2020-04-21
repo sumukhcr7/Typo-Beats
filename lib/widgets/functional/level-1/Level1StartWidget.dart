@@ -1,24 +1,17 @@
-import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
+import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:flutter/material.dart';
 
 class Level1StartWidget extends StatefulWidget {
-  final levelsModel;
-  final store;
-
-  Level1StartWidget({this.levelsModel, this.store});
 
   Level1StartWidgetState createState() =>
-      Level1StartWidgetState(levelsModel: levelsModel, store: store);
+      Level1StartWidgetState();
 }
 
 class Level1StartWidgetState extends State<Level1StartWidget> {
-  final levelsModel;
-  final store;
-  Level1StartWidgetState({this.levelsModel, this.store});
 
   onClickOfLogout(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginContainer()),
+        MaterialPageRoute(builder: (context) => LoginWidget()),
         (Route<dynamic> route) => false);
   }
 

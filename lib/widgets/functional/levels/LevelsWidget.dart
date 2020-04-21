@@ -1,33 +1,27 @@
 import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/level-2/Level2StartWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/level-3/Level3StartWidget.dart';
-import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
+import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:flutter/material.dart';
 
 class LevelsWidget extends StatefulWidget {
-  final levelsModel;
-  final store;
 
-  LevelsWidget({this.levelsModel, this.store});
 
   LevelsWidgetState createState() =>
-      LevelsWidgetState(levelsModel: levelsModel, store: store);
+      LevelsWidgetState();
 }
 
 class LevelsWidgetState extends State<LevelsWidget> {
-  final levelsModel;
-  final store;
-  LevelsWidgetState({this.levelsModel, this.store});
 
   onClickOfLogout(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginContainer()),
+        MaterialPageRoute(builder: (context) => LoginWidget()),
         (Route<dynamic> route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold(body:Column(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +126,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            Level1StartWidget(store: store),
+                                            Level1StartWidget(),
                                       ));
                                 },
                               ))
@@ -188,7 +182,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            Level2StartWidget(store: store),
+                                            Level2StartWidget(),
                                       ));
                                 },
                               ))
@@ -244,7 +238,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            Level3StartWidget(store: store),
+                                            Level3StartWidget(),
                                       ));
                                 },
                               ))
@@ -256,6 +250,6 @@ class LevelsWidgetState extends State<LevelsWidget> {
           ),
         ),
       ],
-    );
+    ));
   }
 }

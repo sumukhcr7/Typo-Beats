@@ -1,28 +1,23 @@
-import 'package:HYPER_SYNK/store/AppState.dart';
 import 'package:HYPER_SYNK/theme/Theme.dart';
-import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-2/Level2StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import './store/MainReducer.dart' as MainReducer;
 
 Future<void> main() async {
-  final storeInstance = await MainReducer.initializeStore();
-  runApp(new TypoBeatsApplication(storeInstance));
+  runApp(new TypoBeatsApplication(from:'main'));
 }
 
 class TypoBeatsApplication extends StatelessWidget {
-  final store;
-  TypoBeatsApplication(this.store);
-
+  final from;
+  TypoBeatsApplication({this.from});
   @override
   Widget build(BuildContext context) {
-    return new StoreProvider<AppState>(
-      store: store,
-      child: MaterialApp(
+    return MaterialApp(
         theme: colorPalatte(),
         debugShowCheckedModeBanner: false,
-        home: LoginContainer(store: store)
-      ),
-    );
+        home: from=='main'? LoginWidget() :from=='level1'?Level1StartWidget():Level2StartWidget()
+      );
+    
   }
 }
