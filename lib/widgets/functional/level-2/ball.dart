@@ -8,38 +8,20 @@ class Ball extends SpriteComponent {
   int postion;
   int ypostion;
   double maxY;
-  bool isExplode; 
-  bool isLengthEqualOfTypedAndRandom; 
-  var previousPoints;
 
-  Ball(this.dimenstions, this.postion, this.ypostion, this.isExplode, this.isLengthEqualOfTypedAndRandom)
+  Ball(this.dimenstions, this.postion, this.ypostion)
       : super.square(BALL_SIZE, 'blueball.png');
 
   @override
   void update(double t) {
-    y += isExplode||gameOver ? 0 : (t * BALLSPEED);
+    if (gameOver != true) {
+      y += gameOver ? -1 : (t * BALLSPEED);
+    }
   }
 
-  // @override
   bool destroy() {
-    
-    // print("I CAME TO BALL");
-    // print(isLengthEqualOfTypedAndRandom);
-    if (isExplode) {
+    if (gameOver == true) {
       return true;
-    }
-    if (y == null || maxY == null) {
-      return false;
-    }
-    bool destroy = y >= maxY + BALL_SIZE / 2;
-    if (destroy==true&&previousPoints==points) {
-      gameOver = true;
-
-      print("Game over");
-      return true;
-    }
-    else{
-      previousPoints=points;
     }
     return false;
   }

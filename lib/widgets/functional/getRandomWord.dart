@@ -1,6 +1,7 @@
 import 'package:random_words/random_words.dart';
+import 'level-2/Level2StartWidget.dart';
 
-getRandomWord(){
-var word= generateNoun().take(1).toString();
-return word.toString().substring(1,word.length-1);
+getRandomWord() {
+  var wordList = generateNoun().take(numberOfWords).toList();
+  return wordList;
 }

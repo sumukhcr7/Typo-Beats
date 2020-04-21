@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-
-import '../getRandomWord.dart';
 import 'Level2StartWidget.dart';
 import 'Word.dart';
 import 'ball.dart';
+
+bool makeGameOver = false;
 
 class GameArea extends BaseGame {
   bool checkOnce = true;
@@ -15,114 +15,61 @@ class GameArea extends BaseGame {
   Object ball = {};
   Object word = {};
   Size dimenstions;
-  String textTyped;
-  String randomWord='typo';
-  bool isExplode=false;
-  List typedTextArry=[];
-  List randomWordsArray=['typo'];
-
+  String textTyped = '';
   GameArea(this.dimenstions);
 
   changeText(text, clearTextInput) {
     textTyped = text;
-    if (randomWord == textTyped) {
+    if (randomWordsArray[count - 1].toString() == textTyped) {
+      points = points + 1;
       clearTextInput();
     }
-    // print(getRandomWord().toString());
   }
-
-  // handleSubmit(value) {
-  //   textTyped = value;
-  // }
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-
-    String text = points.toString();
+    String text = "Score: ${points.toString()}";
     TextPainter p = Flame.util
-        .text(text, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
-    String over = "Game over";
+        .text(text, color: Colors.white, fontSize: 32.0, fontFamily: 'Halo');
+    int tempnumberOfWords = numberOfWords - 1;
+    double percentage = (points / tempnumberOfWords) * 100;
+    String over =
+        "Game is completed, your score percentage is ${percentage.toString()}%";
     TextPainter overGame = Flame.util
-        .text(over, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
+        .text(over, color: Colors.white, fontSize: 38.0, fontFamily: 'Halo');
     gameOver
         ? overGame.paint(canvas, Offset(size.width / 5, size.height / 2))
-        : p.paint(canvas,
-            new Offset(size.width - p.width - 10, size.height - p.height - 10));
+        : p.paint(canvas, new Offset(20, 40));
   }
 
   double creationTimer = 0.0;
   @override
   void update(double t) {
-    // print("called");
-    if(gameOver!=true){
-    creationTimer += t;
-    if (creationTimer >= 4) {
-      creationTimer = 0.0;
-
-   
-      // if (randomWord == textTyped) {
-      //   isExplode = true;
-      // }
-      // print(randomWordsArray);
-      // print(typedTextArry);
-      // print("inodddddddddd $isExplode");
-      int tempLengthOfRandomWords=randomWordsArray.length-1.toInt();
-      int tempLengthOfTypedTextArray=randomWordsArray.length-1.toInt();
-            // bool tempLengthOfRandomWords=true;
-      // bool tempLengthOfTypedTextArray=true;
-      if (!isExplode) {
-          randomWord=getRandomWord().toString();
-     randomWord=randomWord;
-     randomWordsArray.add(randomWord);
-    //  tempLengthOfRandomWords=randomWordsArray.length-1.toInt();
-    //  tempLengthOfTypedTextArray=typedTextArry.length.toInt();
-    //  print("INSIDE");
-                  // print(tempLengthOfRandomWords==tempLengthOfTypedTextArray);
-
-    //  print("Random words length ${tempLengthOfRandomWords-1}");
-    //  print("typed text length $tempLengthOfTypedTextArray");
-    //  bool a=int.parse(tempLengthOfRandomWords) ==int.parse(tempLengthOfTypedTextArray)
-       print(isDestroyed);
-        ball = new Ball(dimenstions, 5, 0, isExplode, isDestroyed);
-        word = new Word(dimenstions, 630.0, 0.35, randomWord, isExplode, isDestroyed);
+    if (gameOver != true) {
+      creationTimer += t;
+      if (creationTimer >= 4) {
+        creationTimer = 0.0;
+        if (count == numberOfWords - 1) {
+          level2GameMain(true);
+          gameOver = true;
+        }
+        if (numberOfWords == 26) {
+          if (count == 5) {
+            BALLSPEED = BALLSPEED + 25;
+          } else if (count == 10) {
+            BALLSPEED = BALLSPEED + 20;
+          }
+        }
+        ball = new Ball(dimenstions, 5, 0);
+        word = new Word(
+            dimenstions, 630.0, 0.35, randomWordsArray[count].toString());
         add(ball);
         add(word);
-      } else {
-             print("OUTSIDE");
-
-            //  print(tempLengthOfRandomWords==tempLengthOfTypedTextArray);
-
-        points = points + 1;
-        isDestroyed=true;
-               print(isDestroyed);
-
-        // previosPoints= points;
-        ball = new Ball(dimenstions, -1, -1, isExplode, isDestroyed);
-        word = new Word(dimenstions, -1, -1, randomWord,isExplode, isDestroyed);
-        add(ball);
-        add(word);
-        textTyped='';
-        isExplode=false;
+        count = count + 1;
       }
+
+      super.update(t);
     }
-    super.update(t);
-    }
-  }
-
-  void tapInput(Offset position) {
-    touchPositionDx = position.dx;
-    touchPositionDy = position.dy;
-    bulletStartStop = true;
-  }
-
-  void dragInput(Offset position) {
-    touchPositionDx = position.dx;
-    touchPositionDy = position.dy;
-    bulletStartStop = true;
-  }
-
-  void onUp() {
-    bulletStartStop = false;
   }
 }
