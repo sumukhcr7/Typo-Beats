@@ -51,6 +51,13 @@ flutter:
       - assets/
       - assets/assets/images/blueball.png
       - assets/assets/images/redball.png
+      - assets/assets/images/TopDownCar.png
+      - assets/assets/images/pitstop_car_17.png
+      - assets/assets/images/FAVPNG_sports-car-formula-one-auto-racing-clip-art_uchvek9T.png
+      - assets/assets/images/FAVPNG_car-laferrari-auto-racing-clip-art_tWv3XVRs.png
+      - assets/assets/images/FAVPNG_download-car-birds-eye-view_tShBzAJq.png
+      - assets/assets/images/FAVPNG_car-laferrari-isuzu-erga-clip-art_Sxzv3MEB.png
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

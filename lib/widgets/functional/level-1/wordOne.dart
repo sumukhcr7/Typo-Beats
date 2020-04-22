@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:HYPER_SYNK/widgets/functional/level-2/Level2StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,12 +30,12 @@ class Word extends SpriteComponent {
   }
 
   @override
-  void update(double t) {
-    if (gameOver != true) {
-      y += gameOver ? -1 : (t * BALLSPEED);
-      ypostion = gameOver ? -1 : y;
-    }
-  }
+  // void update(double t) {
+  //   if (gameOver != true) {
+  //     y += gameOver ? -1 : (1-(t * (BALLSPEED)));
+  //     ypostion = gameOver ? -1 : y;
+  //   }
+  // }
 
   bool destroy() {
     if (gameOver == true) {

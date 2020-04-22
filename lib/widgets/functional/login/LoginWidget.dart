@@ -1,8 +1,8 @@
 import 'package:HYPER_SYNK/widgets/functional/levels/LevelListContainer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 
-import '../Validation.dart';
+//import '../Validation.dart';
 
 
 class LoginWidget extends StatefulWidget {
