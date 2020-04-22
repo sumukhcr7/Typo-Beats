@@ -138,14 +138,14 @@ class Level2StartWidgetState extends State<Level2StartWidget> {
                           Padding(
                               padding: EdgeInsets.only(top: 24),
                               child: Text(
-                                "Level 2",
+                                "Play with balls",
                                 style: Theme.of(context).textTheme.headline5,
                               )),
                           Padding(
                               padding: EdgeInsets.only(
                                   top: 16, bottom: 24, left: 8, right: 8),
                               child: Text(
-                                "INSTRUCTIONS: Type the words in the text box given on the balloons to avoid the balloons falling down and to score.",
+                                "INSTRUCTIONS: Type the words in the text box given on the ball to score.",
                                 style: Theme.of(context).textTheme.bodyText1,
                               )),
                           Container(

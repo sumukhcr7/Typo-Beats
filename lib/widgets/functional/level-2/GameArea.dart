@@ -88,4 +88,7 @@ class GameArea extends BaseGame {
       super.update(t);
     }
   }
+    void tapInput(Offset position) {
+    print('tapped');
+  }
 }
