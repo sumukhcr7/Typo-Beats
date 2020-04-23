@@ -12,6 +12,8 @@ class Word extends SpriteComponent {
   double ypostion;
   double maxY;
   String word;
+  Rect board;
+  Paint boardPaint;
 
   Word(this.dimenstions, this.postion, this.ypostion, this.word);
 
@@ -20,11 +22,15 @@ class Word extends SpriteComponent {
     if (!gameOver) {
       super.render(canvas);
       String text = word;
+      board = Rect.fromLTWH(350, 0, 400, 100);
+      boardPaint = Paint();
+      boardPaint.color = Color(0xff6ab04c);
       TextPainter p = Flame.util.text(
         text,
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 28.0,
       );
+      //canvas.drawRect(board, boardPaint);
       p.paint(canvas, new Offset(postion, ypostion));
     }
   }
