@@ -17,7 +17,7 @@ class CarTwo extends SpriteComponent {
   void update(double t) {
     //print(t);
     if (gameOver != true) {
-      y += gameOver ? -1 :(0.9- (t *(BALLSPEED)));
+      y += gameOver ? -1 :(1- (t *(BALLSPEED)));
       // print('****');
       // print(y);
       // print('#####');
