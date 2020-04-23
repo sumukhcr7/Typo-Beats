@@ -30,14 +30,21 @@ class GameAreaOne extends BaseGame {
   Paint tilePaint;
   int ocount=0;
   String over;
+  String checkword=randomWordsArray[0].toString();
+  Rect board;
+  Paint boardPaint;
   
 
   changeText(text, clearTextInput) {
     textTyped = text;
-    if (randomWordsArray[count - 1].toString() == textTyped) {
+    if ( randomWordsArray[count].toString() == textTyped) {
       points = points + 1;
       clearTextInput();
     }
+  }
+
+  paintrect(newtext){
+    checkword=newtext;
   }
 
   @override
@@ -47,13 +54,15 @@ class GameAreaOne extends BaseGame {
     String text = "Score: ${points.toString()}";
     TextPainter p = Flame.util
         .text(text, color: Colors.white, fontSize: 32.0, fontFamily: 'Halo');
+    TextPainter x = Flame.util
+        .text(checkword, color: Colors.white, fontSize: 32.0, fontFamily: 'Halo');
     //int tempnumberOfWords = numberOfWords - 1;
     //double percentage = (points / tempnumberOfWords) * 100;
-    if(points>=10)
+    if(points>=8)
     {
       over = "Hurray you won the First Place";
     }
-    else if(points>5 && points<10)
+    else if(points>5 && points<8)
     {
       over = "You finished in the second place";
     }
@@ -65,7 +74,10 @@ class GameAreaOne extends BaseGame {
         .text(over, color: Colors.white, fontSize: 38.0, fontFamily: 'Halo');
     gameOver
         ? overGame.paint(canvas, Offset(size.width / 5, size.height / 2))
-        : p.paint(canvas, new Offset(20, 40));
+        : x.paint(canvas, new Offset(350, 40));
+         p.paint(canvas,  Offset(20, 40));
+          
+          
     // tilee = Rect.fromLTWH(0, 0, 5, 5);
     // tilePaint = Paint();
     // tilePaint.color = Color(0xff6ab04c);
@@ -77,6 +89,7 @@ class GameAreaOne extends BaseGame {
   double creationTimer = 0.0;
   @override
   void update(double t) {
+    paintrect(randomWordsArray[count].toString());
     if (gameOver != true) {
       creationTimer += t;
       if (creationTimer >= 4) {
@@ -94,8 +107,8 @@ class GameAreaOne extends BaseGame {
         }
         
       
-        car = new Car(dimenstions, 5, 6);
-        carOne = new CarOne(dimenstions, 1, 6);
+        car = new Car(dimenstions, 6, 6);
+        carOne = new CarOne(dimenstions, 3, 6);
         carTwo = new CarTwo(dimenstions, 9, 6);
         word = new Word(
             dimenstions, 630.0, 9 , randomWordsArray[count].toString());
@@ -110,7 +123,7 @@ class GameAreaOne extends BaseGame {
         count = count + 1;
       }
       add(word);
-
+      
       super.update(t);
     }
   }
