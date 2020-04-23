@@ -102,11 +102,11 @@ class LevelsWidgetState extends State<LevelsWidget> {
                             ),
                           ),
                           SizedBox(
-                              width: 150,
+                              width: 170,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
-                                        new BorderRadius.circular(10.0)),
+                                        new BorderRadius.circular(15.0)),
                                 elevation: 1,
                                 color: Theme.of(context).accentColor,
                                 textColor: Colors.white,
@@ -118,7 +118,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Level 1',
+                                          'TYPO RACER',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
