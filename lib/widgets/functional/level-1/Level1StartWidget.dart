@@ -16,9 +16,12 @@ var BALLSPEED = 25.0;
 const BALL_SIZE = 130.0;
 var numberOfWords;
 
+
 var points = 0;
 Car car;
 var game;
+
+ 
 
 class Level1StartWidget extends StatefulWidget {
   final levelsModel;
@@ -45,7 +48,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
   void _handleRadioValueChange(int value) {
     switch (value) {
       case 0:
-        numberOfWords = 11;
+        numberOfWords = 10;
         break;
       case 1:
         numberOfWords = 51;
@@ -131,7 +134,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                 Flexible(
                     flex: 3,
                     child: Container(
-                      height: 350,
+                      height: 200,
                       width: 300,
                       decoration: BoxDecoration(
                         color: Colors.white38,
@@ -142,7 +145,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                           Padding(
                               padding: EdgeInsets.only(top: 24),
                               child: Text(
-                                "Level 1",
+                                "TYPO RACER",
                                 style: Theme.of(context).textTheme.headline5,
                               )),
                           Padding(
@@ -151,54 +154,6 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                               child: Text(
                                 "INSTRUCTIONS: Type the words in the text box given on the car to avoid the cars crashinging down and to score.",
                                 style: Theme.of(context).textTheme.bodyText1,
-                              )),
-                          Container(
-                              height: 150,
-                              child: Column(
-                                children: <Widget>[
-                                  Row(children: <Widget>[
-                                    new Radio(
-                                      value: 0,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        _handleRadioValueChange(0);
-                                      },
-                                    ),
-                                    new Text(
-                                      'Level 1 (contains 25 words)',
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    ),
-                                  ]),
-                                  Row(children: <Widget>[
-                                    new Radio(
-                                      value: 1,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        _handleRadioValueChange(1);
-                                      },
-                                    ),
-                                    new Text(
-                                      'Level 2 (contains 50 words)',
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    )
-                                  ]),
-                                  Row(children: <Widget>[
-                                    new Radio(
-                                      value: 2,
-                                      groupValue: radioValue,
-                                      onChanged: (value) {
-                                        _handleRadioValueChange(2);
-                                      },
-                                    ),
-                                    new Text(
-                                      'Level 3 (contains 100 words)',
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    )
-                                  ]),
-                                ],
                               )),
                           SizedBox(
                               width: 150,
@@ -227,11 +182,11 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                                         )
                                       ],
                                     )),
-                                onPressed: radioValue != null
-                                    ? () {
+                                onPressed: () {
+                                        _handleRadioValueChange(0);
                                         level1GameMain(false);
                                       }
-                                    : null,
+                                    ,
                               )),
                         ],
                       ),
@@ -329,11 +284,35 @@ class GameWrapperState extends State<GameWrapper> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                // SizedBox(
+                //         height: 80,
+                //         width: 200,
+                        //child: Text(
+                            //controller: textClearController,Padding(
+                             //Padding(
+                              //padding: EdgeInsets.only(top: 24),
+
+                              // for (var name in randomWordsArray) {
+                              //  Text(  name ,  
+                              //         style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontWeight: FontWeight.bold,
+                              //         fontSize: 40),
+                                       
+                              //             //style: Theme.of(context).textTheme.headline5,
+                              // )
+//}
+                            
+                              //),
+                           //   )
+                // ),
+                
                 Container(
                   height: MediaQuery.of(context).size.height - 100,
                   width: MediaQuery.of(context).size.width,
                   child: isGameOver == false ? game.widget : Container(),
                 ),
+                
                 isGameOver == true
                     ? SizedBox(
                         width: 150,
