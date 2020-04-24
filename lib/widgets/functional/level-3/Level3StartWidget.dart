@@ -1,3 +1,4 @@
+import 'package:HYPER_SYNK/widgets/functional/levels/Level3PlayArea.dart';
 import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:flutter/material.dart';
@@ -11,21 +12,29 @@ class Level3StartWidget extends StatefulWidget {
 
 class Level3StartWidgetState extends State<Level3StartWidget> {
   var radioValue;
+  var level;
+  var widthFrom;
   onClickOfLogout(context) {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => LoginWidget()),
         (Route<dynamic> route) => false);
   }
   void _handleRadioValueChange(int value) {
+    setState(() {
+      radioValue=value;
+    });
     switch (value) {
       case 0:
-        // numberOfWords = 26;
+        level=1;
+        widthFrom =450;
         break;
       case 1:
-        // numberOfWords = 51;
+        level=2;
+        widthFrom =700;
         break;
       case 2:
-        // numberOfWords = 101;
+        level=3;
+        widthFrom =1200;
         break;
     }
     setState(() {
@@ -142,7 +151,7 @@ class Level3StartWidgetState extends State<Level3StartWidget> {
                                       },
                                     ),
                                     new Text(
-                                      'Level 1 (contains 25 words)',
+                                      'Level 1 (contains around 50 words)',
                                       style:
                                           Theme.of(context).textTheme.bodyText1,
                                     ),
@@ -156,7 +165,7 @@ class Level3StartWidgetState extends State<Level3StartWidget> {
                                       },
                                     ),
                                     new Text(
-                                      'Level 2 (contains 50 words)',
+                                      'Level 2 (contains around 100 words)',
                                       style:
                                           Theme.of(context).textTheme.bodyText1,
                                     )
@@ -170,7 +179,7 @@ class Level3StartWidgetState extends State<Level3StartWidget> {
                                       },
                                     ),
                                     new Text(
-                                      'Level 3 (contains 100 words)',
+                                      'Level 3 (contains around 150 words)',
                                       style:
                                           Theme.of(context).textTheme.bodyText1,
                                     )
@@ -180,6 +189,7 @@ class Level3StartWidgetState extends State<Level3StartWidget> {
                           SizedBox(
                               width: 150,
                               child: RaisedButton(
+                          
                                 disabledColor: Colors.grey,
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -204,7 +214,13 @@ class Level3StartWidgetState extends State<Level3StartWidget> {
                                         )
                                       ],
                                     )),
-                                onPressed: null,
+                                onPressed:level!=null?(){
+                                  Navigator.push(context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Level3PlayArea(level:level, widthFrom:widthFrom),
+                                      ));
+                                      }:null,
                               )),
                         ],
                       ),
