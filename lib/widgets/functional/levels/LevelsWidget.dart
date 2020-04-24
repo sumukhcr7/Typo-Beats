@@ -96,7 +96,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                             ),
                           ),
                           SizedBox(
-                              width: 150,
+                              width: 200,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -112,7 +112,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Level 1',
+                                          'Play with cars',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
@@ -152,7 +152,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                             ),
                           ),
                           SizedBox(
-                              width: 150,
+                              width: 200,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -168,7 +168,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Level 2',
+                                          'Play with balls',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
@@ -208,7 +208,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                             ),
                           ),
                           SizedBox(
-                              width: 150,
+                              width: 220,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -224,7 +224,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Level 3',
+                                          'Play with sentences',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(

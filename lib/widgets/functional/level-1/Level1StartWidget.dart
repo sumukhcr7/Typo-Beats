@@ -98,7 +98,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                           Padding(
                               padding: EdgeInsets.only(top: 24),
                               child: Text(
-                                "Level 1",
+                                "Play with cars",
                                 style: Theme.of(context).textTheme.headline5,
                               )),
                           Padding(
