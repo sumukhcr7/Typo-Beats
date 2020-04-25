@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:HYPER_SYNK/widgets/functional/level-2/Level2StartWidget.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,6 +12,8 @@ class Word extends SpriteComponent {
   double ypostion;
   double maxY;
   String word;
+  Rect board;
+  Paint boardPaint;
 
   Word(this.dimenstions, this.postion, this.ypostion, this.word);
 
@@ -20,23 +22,17 @@ class Word extends SpriteComponent {
     if (!gameOver) {
       super.render(canvas);
       String text = word;
+      board = Rect.fromLTWH(350, 0, 400, 100);
+      boardPaint = Paint();
+      boardPaint.color = Color(0xff6ab04c);
       TextPainter p = Flame.util.text(
         text,
-        color: Colors.white,
-        fontSize: 28.0,
+        color: Colors.black,
+        fontSize: 0.0,
       );
       p.paint(canvas, new Offset(postion, ypostion));
     }
   }
-
-  @override
-  void update(double t) {
-    if (gameOver != true) {
-      y += gameOver ? -1 : (t * BALLSPEED);
-      ypostion = gameOver ? -1 : y;
-    }
-  }
-
   bool destroy() {
     if (gameOver == true) {
       return true;

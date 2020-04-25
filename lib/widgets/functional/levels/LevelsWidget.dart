@@ -100,7 +100,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
-                                        new BorderRadius.circular(10.0)),
+                                        new BorderRadius.circular(15.0)),
                                 elevation: 1,
                                 color: Theme.of(context).accentColor,
                                 textColor: Colors.white,
@@ -112,7 +112,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Play with cars',
+                                          'TYPO RACER',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
@@ -168,7 +168,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Play with balls',
+                                          'BALL GAME',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
@@ -200,13 +200,15 @@ class LevelsWidgetState extends State<LevelsWidget> {
                       child: Column(
                         children: <Widget>[
                           Container(
+                            decoration: BoxDecoration(color:Colors.black),
                             height: 200,
                             width: 300,
                             child: Image.asset(
-                              'car.png',
+                              'learnTyping.png',
                               fit: BoxFit.contain,
                             ),
                           ),
+                          Padding(padding: EdgeInsets.only(top:8),child:
                           SizedBox(
                               width: 220,
                               child: RaisedButton(
@@ -224,7 +226,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Play with sentences',
+                                          'Pay with sentences',
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Icon(
@@ -241,7 +243,7 @@ class LevelsWidgetState extends State<LevelsWidget> {
                                             Level3StartWidget(),
                                       ));
                                 },
-                              ))
+                              )))
                         ],
                       ),
                     )),

@@ -1,4 +1,5 @@
 import 'package:HYPER_SYNK/widgets/functional/level-2/GameArea.dart';
+import 'package:HYPER_SYNK/widgets/functional/level-2/ball.dart';
 import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:flame/flame.dart';
@@ -6,8 +7,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../main.dart';
 import '../getRandomWord.dart';
-import 'GameArea.dart';
-import 'ball.dart';
+
+
 
 List randomWordsArray = getRandomWord();
 int count = 0;

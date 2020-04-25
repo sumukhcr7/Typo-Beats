@@ -2,7 +2,6 @@ import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:flutter/material.dart';
 
 
-
 class LoginWidget extends StatefulWidget {
 
 
