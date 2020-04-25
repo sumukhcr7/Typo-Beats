@@ -28,21 +28,11 @@ class Word extends SpriteComponent {
       TextPainter p = Flame.util.text(
         text,
         color: Colors.black,
-        fontSize: 28.0,
+        fontSize: 0.0,
       );
-      //canvas.drawRect(board, boardPaint);
       p.paint(canvas, new Offset(postion, ypostion));
     }
   }
-
-  @override
-  // void update(double t) {
-  //   if (gameOver != true) {
-  //     y += gameOver ? -1 : (1-(t * (BALLSPEED)));
-  //     ypostion = gameOver ? -1 : y;
-  //   }
-  // }
-
   bool destroy() {
     if (gameOver == true) {
       return true;

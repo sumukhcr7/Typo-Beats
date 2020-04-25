@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class Car extends SpriteComponent {
   Size dimenstions;
-  int postion;
+  double postion;
   int ypostion;
   double maxY;
 

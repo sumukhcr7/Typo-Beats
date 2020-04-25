@@ -50,14 +50,16 @@ class GameAreaOne extends BaseGame {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
+     board = Rect.fromLTWH(290, 13, 200, 100);
+      boardPaint = Paint();
+      boardPaint.color = Colors.white;
     hpos=size.height;
     String text = "Score: ${points.toString()}";
     TextPainter p = Flame.util
-        .text(text, color: Colors.white, fontSize: 32.0, fontFamily: 'Halo');
+        .text(text, color: Colors.white, fontSize: 36.0 ,fontFamily: 'Halo');
     TextPainter x = Flame.util
-        .text(checkword, color: Colors.white, fontSize: 32.0, fontFamily: 'Halo');
-    //int tempnumberOfWords = numberOfWords - 1;
-    //double percentage = (points / tempnumberOfWords) * 100;
+        .text(checkword, color: Colors.black, fontSize: 40.0, fontFamily: 'Halo');
+    canvas.drawRect(board, boardPaint);
     if(points>=8)
     {
       over = "Hurray you won the First Place";
@@ -73,29 +75,20 @@ class GameAreaOne extends BaseGame {
     TextPainter overGame = Flame.util
         .text(over, color: Colors.white, fontSize: 38.0, fontFamily: 'Halo');
     gameOver
-        ? overGame.paint(canvas, Offset(size.width / 5, size.height / 2))
+        ? overGame.paint(canvas, Offset((size.width / 5)+10, size.height / 2))
         : x.paint(canvas, new Offset(350, 40));
-         p.paint(canvas,  Offset(20, 40));
-          
-          
-    // tilee = Rect.fromLTWH(0, 0, 5, 5);
-    // tilePaint = Paint();
-    // tilePaint.color = Color(0xff6ab04c);
-    // canvas.drawRect(tilee, tilePaint);
-
-    
+         p.paint(canvas,  Offset(900, 40));  
   }
-
   double creationTimer = 0.0;
   @override
   void update(double t) {
-    paintrect(randomWordsArray[count].toString());
     if (gameOver != true) {
+          paintrect(randomWordsArray[count].toString());
       creationTimer += t;
       if (creationTimer >= 4) {
         creationTimer = 0.0;
         if (count == numberOfWords - 1) {
-          level1GameMain(true);
+             level1GameMain();
           gameOver = true;
         }
         if (numberOfWords == 26) {
@@ -107,9 +100,9 @@ class GameAreaOne extends BaseGame {
         }
         
       
-        car = new Car(dimenstions, 6, 6);
-        carOne = new CarOne(dimenstions, 3, 6);
-        carTwo = new CarTwo(dimenstions, 9, 6);
+        car = new Car(dimenstions, 4.5, 6);
+        carOne = new CarOne(dimenstions, 2, 6);
+        carTwo = new CarTwo(dimenstions, 7, 6);
         word = new Word(
             dimenstions, 630.0, 9 , randomWordsArray[count].toString());
         
@@ -127,10 +120,7 @@ class GameAreaOne extends BaseGame {
       super.update(t);
     }
   }
-
-  // @override
-  // void resize(Size size) {
-  //   tilesize = size.width;
-  //   //print(maxY);
-  // }
+   void tapInput(Offset position) {
+    print('tapped');
+  }
 }

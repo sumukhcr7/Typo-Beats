@@ -1,61 +1,36 @@
 import 'package:HYPER_SYNK/widgets/functional/level-1/GameAreaOne.dart';
 import 'package:HYPER_SYNK/widgets/functional/level-1/car.dart';
+import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:HYPER_SYNK/widgets/getRandomWordsOne.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-
-
+import '../../../main.dart';
 
 List randomWordsArray = getRandomWord();
 int count = 0;
 bool gameOver = false;
 var BALLSPEED = 25.0;
 const BALL_SIZE = 130.0;
-var numberOfWords;
-
+var numberOfWords = 10;
 
 var points = 0;
 Car car;
 var game;
 
- 
-
 class Level1StartWidget extends StatefulWidget {
-
-  Level1StartWidgetState createState() =>
-      Level1StartWidgetState();
+  Level1StartWidgetState createState() => Level1StartWidgetState();
 }
 
 class Level1StartWidgetState extends State<Level1StartWidget> {
-  final levelsModel;
-  final store;
   var radioValue;
-  Level1StartWidgetState({this.levelsModel, this.store});
 
   onClickOfLogout(context) {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => LoginWidget()),
         (Route<dynamic> route) => false);
-  }
-
-  void _handleRadioValueChange(int value) {
-    switch (value) {
-      case 0:
-        numberOfWords = 10;
-        break;
-      case 1:
-        numberOfWords = 51;
-        break;
-      case 2:
-        numberOfWords = 101;
-        break;
-    }
-    setState(() {
-      radioValue = value;
-    });
   }
 
   @override
@@ -73,7 +48,11 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                     color: Colors.black,
                     iconSize: 25,
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LevelsWidget(),
+                          ));
                     }),
                 Padding(
                     padding: EdgeInsets.only(left: 24),
@@ -179,10 +158,8 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
                                       ],
                                     )),
                                 onPressed: () {
-                                        _handleRadioValueChange(0);
-                                        level1GameMain(false);
-                                      }
-                                    ,
+                                  level1GameMain();
+                                },
                               )),
                         ],
                       ),
@@ -196,7 +173,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
   }
 }
 
-level1GameMain(isGameOver) async {
+level1GameMain() async {
   Flame.audio.disableLog();
   var dimensions = await Flame.util.initialDimensions();
   game = new GameAreaOne(dimensions);
@@ -204,12 +181,12 @@ level1GameMain(isGameOver) async {
       home: Scaffold(
           body: Container(
     decoration: new BoxDecoration(
-          image: new DecorationImage(
-          image: new AssetImage("Roadff.png"),
-          fit: BoxFit.cover,
-        ),
-        ),
-    child: GameWrapper(game, isGameOver),
+      image: new DecorationImage(
+        image: new AssetImage("Roadff.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: GameWrapper(game),
   ))));
 
   HorizontalDragGestureRecognizer horizontalDragGestureRecognizer =
@@ -228,19 +205,17 @@ level1GameMain(isGameOver) async {
 
 class GameWrapper extends StatefulWidget {
   final GameAreaOne game;
-  final isGameOver;
-  GameWrapper(this.game, this.isGameOver);
+  GameWrapper(this.game);
   @override
-  GameWrapperState createState() => GameWrapperState(game, isGameOver);
+  GameWrapperState createState() => GameWrapperState(game);
 }
 
 class GameWrapperState extends State<GameWrapper> {
   final GameAreaOne game;
-  final isGameOver;
   bool makeGameOver = false;
   String textTyped;
-
-  GameWrapperState(this.game, this.isGameOver);
+  bool isBackButton;
+  GameWrapperState(this.game);
 
   final textClearController = TextEditingController();
 
@@ -251,12 +226,13 @@ class GameWrapperState extends State<GameWrapper> {
   @override
   initState() {
     super.initState();
-    if (isGameOver == true) {
-      setState(() {
-        makeGameOver = true;
-      });
-      print('making true');
-    }
+  }
+
+  handleBackButton() {
+    setState(() {
+      isBackButton = true;
+    });
+    runApp(TypoBeatsApplication(from: 'level1'));
   }
 
   handleChangeOfText(text) async {
@@ -271,95 +247,59 @@ class GameWrapperState extends State<GameWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            decoration: new BoxDecoration(color: Colors.black
-                // image: new DecorationImage(
-                //   image: new AssetImage("assets/images/background.jpg"),
-                //   fit: BoxFit.cover,
-                // ),
-                ),
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage("assets/Roadff.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                // SizedBox(
-                //         height: 80,
-                //         width: 200,
-                        //child: Text(
-                            //controller: textClearController,Padding(
-                             //Padding(
-                              //padding: EdgeInsets.only(top: 24),
-
-                              // for (var name in randomWordsArray) {
-                              //  Text(  name ,  
-                              //         style: TextStyle(
-                              //         color: Colors.white,
-                              //         fontWeight: FontWeight.bold,
-                              //         fontSize: 40),
-                                       
-                              //             //style: Theme.of(context).textTheme.headline5,
-                              // )
-//}
-                            
-                              //),
-                           //   )
-                // ),
-                
-                Container(
-                  height: MediaQuery.of(context).size.height - 100,
-                  width: MediaQuery.of(context).size.width,
-                  child: isGameOver == false ? game.widget : Container(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        color: Colors.black,
+                        height: 40,
+                        width: 40,
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              handleBackButton();
+                            })),
+                    Container(
+                        height: MediaQuery.of(context).size.height - 300,
+                        width: MediaQuery.of(context).size.width,
+                        child: game.widget),
+                  ],
                 ),
-                
-                isGameOver == true
-                    ? SizedBox(
-                        width: 150,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(10.0)),
-                          elevation: 1,
-                          color: Theme.of(context).accentColor,
-                          textColor: Colors.white,
-                          child: Padding(
-                              padding: EdgeInsets.only(top: 12, bottom: 12),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    'Back',
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  Icon(
-                                    Icons.play_arrow,
-                                    size: 20,
-                                  )
-                                ],
-                              )),
-                          onPressed: () {
-                            // level2GameMain();
-                          },
-                        ))
-                    : SizedBox(
-                        height: 80,
-                        width: 300,
-                        child: TextField(
-                            controller: textClearController,
-                            onChanged: (text) {
-                              handleChangeOfText(text);
-                            },
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
-                                    width: 0,
-                                    style: BorderStyle.none,
-                                  ),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: "Enter the text here",
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 18)))),
+                SizedBox(
+                    height: 80,
+                    width: 300,
+                    child: TextField(
+                        controller: textClearController,
+                        onChanged: (text) {
+                          handleChangeOfText(text);
+                        },
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide(
+                                width: 0,
+                                style: BorderStyle.none,
+                              ),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: "Enter the text here",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 18)))),
               ],
             )));
   }
