@@ -239,7 +239,6 @@ class GameWrapperState extends State<GameWrapper> {
     setState(() {
       textTyped = text;
     });
-    print(randomWordsArray);
     game.changeText(text, clearTextInput);
   }
 

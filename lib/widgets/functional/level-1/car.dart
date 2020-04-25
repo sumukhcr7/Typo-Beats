@@ -15,14 +15,8 @@ class Car extends SpriteComponent {
 
   @override
   void update(double t) {
-    //print(t);
     if (gameOver != true) {
       y += gameOver ? -1 :((t * -BALLSPEED));
-      // print('****');
-      // print(y);
-      // print('#####');
-      
-      
     }
   }
 
@@ -38,6 +32,5 @@ class Car extends SpriteComponent {
     this.x = (BALL_SIZE * postion);
     this.y = BALL_SIZE * ypostion;
     this.maxY = size.height;
-    //print(maxY);
   }
 }
