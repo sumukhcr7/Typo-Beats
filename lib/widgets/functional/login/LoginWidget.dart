@@ -1,36 +1,17 @@
-import 'package:HYPER_SYNK/widgets/functional/levels/LevelListContainer.dart';
+import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
-
-//import '../Validation.dart';
 
 
 class LoginWidget extends StatefulWidget {
-  final loginModel;
-  final store;
 
-  LoginWidget({this.loginModel, this.store});
 
   LoginWidgetState createState() =>
-      LoginWidgetState(loginModel: loginModel, store: store);
+      LoginWidgetState();
 }
 
 class LoginWidgetState extends State<LoginWidget> {
-  final loginModel;
-  final store;
   var userName;
   var password;
-  LoginWidgetState({this.loginModel, this.store});
-
-  getUserById() async {
-    await loginModel.getUserById(null);
-  }
-
-  @override
-  initState() {
-    super.initState();
-    getUserById();
-  }
 
   handleChange(text, valueType) {
     if (valueType == "userName") {
@@ -49,7 +30,7 @@ class LoginWidgetState extends State<LoginWidget> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => LevelListContainer(store: store),
+            builder: (context) => LevelsWidget(),
           ));
     // } else {
       // getSnackBar(context, "Please enter the correct credentials");
@@ -58,7 +39,7 @@ class LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: <Widget>[
+    return Scaffold(body: Row(children: <Widget>[
       Container(
         decoration: BoxDecoration(color:Colors.white),
         width: MediaQuery.of(context).size.width/2.5,
@@ -158,6 +139,6 @@ class LoginWidgetState extends State<LoginWidget> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width /1.67,
           child: Image.asset('typing2.jpg',fit: BoxFit.cover,)),
-    ]);
+    ]));
   }
 }

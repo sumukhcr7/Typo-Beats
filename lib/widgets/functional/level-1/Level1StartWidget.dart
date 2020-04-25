@@ -1,6 +1,6 @@
 import 'package:HYPER_SYNK/widgets/functional/level-1/GameAreaOne.dart';
 import 'package:HYPER_SYNK/widgets/functional/level-1/car.dart';
-import 'package:HYPER_SYNK/widgets/functional/login/LoginContainer.dart';
+import 'package:HYPER_SYNK/widgets/functional/login/LoginWidget.dart';
 import 'package:HYPER_SYNK/widgets/getRandomWordsOne.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
@@ -24,13 +24,9 @@ var game;
  
 
 class Level1StartWidget extends StatefulWidget {
-  final levelsModel;
-  final store;
-
-  Level1StartWidget({this.levelsModel, this.store});
 
   Level1StartWidgetState createState() =>
-      Level1StartWidgetState(levelsModel: levelsModel, store: store);
+      Level1StartWidgetState();
 }
 
 class Level1StartWidgetState extends State<Level1StartWidget> {
@@ -41,7 +37,7 @@ class Level1StartWidgetState extends State<Level1StartWidget> {
 
   onClickOfLogout(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginContainer()),
+        MaterialPageRoute(builder: (context) => LoginWidget()),
         (Route<dynamic> route) => false);
   }
 
