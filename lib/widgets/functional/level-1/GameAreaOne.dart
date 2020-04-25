@@ -75,7 +75,7 @@ class GameAreaOne extends BaseGame {
     TextPainter overGame = Flame.util
         .text(over, color: Colors.white, fontSize: 38.0, fontFamily: 'Halo');
     gameOver
-        ? overGame.paint(canvas, Offset((size.width / 5)+10, size.height / 2))
+        ? overGame.paint(canvas, Offset((size.width / 5), size.height / 2))
         : x.paint(canvas, new Offset(350, 40));
          p.paint(canvas,  Offset(900, 40));  
   }
