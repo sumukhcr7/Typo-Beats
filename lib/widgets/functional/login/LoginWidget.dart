@@ -1,6 +1,7 @@
 import 'package:HYPER_SYNK/widgets/functional/levels/LevelsWidget.dart';
 import 'package:flutter/material.dart';
 
+import '../Validation.dart';
 
 class LoginWidget extends StatefulWidget {
 
@@ -26,15 +27,15 @@ class LoginWidgetState extends State<LoginWidget> {
   }
 
   onClickOfLogin(context) {
-    // if (userName == "admin" && password == "admin") {
+    if (userName == "admin" && password == "admin") {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => LevelsWidget(),
           ));
-    // } else {
-      // getSnackBar(context, "Please enter the correct credentials");
-    // }
+    } else {
+      getSnackBar(context, "Please enter the correct credentials");
+    }
   }
 
   @override
@@ -105,7 +106,8 @@ class LoginWidgetState extends State<LoginWidget> {
                                       color: Colors.grey, fontSize: 14)))),
                       SizedBox(
                           width: 180,
-                          child: RaisedButton(
+                          child:Builder(
+        builder: (context) => RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(20.0)),
                             elevation: 1,
@@ -130,7 +132,7 @@ class LoginWidgetState extends State<LoginWidget> {
                             onPressed: () {
                               onClickOfLogin(context);
                             },
-                          )),
+                      ))),
                     ],
                   ))
             ],

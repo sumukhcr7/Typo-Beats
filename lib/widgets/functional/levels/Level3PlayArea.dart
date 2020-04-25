@@ -243,7 +243,7 @@ class Level3PlayAreaState extends State<Level3PlayArea> {
                                   padding: EdgeInsets.only(
                                       top: 16, bottom: 24, left: 8, right: 8),
                                   child: Text(
-                                      "You scored ${percentage.toStringAsFixed(2)}",
+                                      "You scored ${percentage.toStringAsFixed(2)}%",
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
