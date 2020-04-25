@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 class CarTwo extends SpriteComponent {
   Size dimenstions;
-  int postion;
+  double postion;
   int ypostion;
   double maxY;
 
@@ -16,7 +16,7 @@ class CarTwo extends SpriteComponent {
   @override
   void update(double t) {
     if (gameOver != true) {
-      y += gameOver ? -1 :(1- (t *(BALLSPEED)));
+      y += gameOver ? -1 :((t * -CAR2SPEED));
     }
   }
 

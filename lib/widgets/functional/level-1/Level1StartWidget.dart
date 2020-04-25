@@ -12,7 +12,9 @@ import '../../../main.dart';
 List randomWordsArray = getRandomWord();
 int count = 0;
 bool gameOver = false;
-var BALLSPEED = 25.0;
+var CARSPEED = 25.0;
+var CAR1SPEED = 20.0;
+var CAR2SPEED = 20.0;
 const BALL_SIZE = 130.0;
 var numberOfWords = 10;
 

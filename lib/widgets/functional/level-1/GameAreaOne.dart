@@ -1,14 +1,12 @@
 import 'dart:ui';
 import 'package:HYPER_SYNK/widgets/functional/level-1/Level1StartWidget.dart';
 import 'package:HYPER_SYNK/widgets/functional/level-1/car.dart';
-import 'package:HYPER_SYNK/widgets/functional/level-1/carOne.dart';
-import 'package:HYPER_SYNK/widgets/functional/level-1/carTwo.dart';
-
-import 'package:HYPER_SYNK/widgets/functional/level-1/wordOne.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
+import 'CarOne.dart';
+import 'CarTwo.dart';
 
 
 
@@ -93,9 +91,9 @@ class GameAreaOne extends BaseGame {
         }
         if (numberOfWords == 26) {
           if (count == 5) {
-            BALLSPEED = BALLSPEED + 25;
+            CARSPEED = CARSPEED + 25;
           } else if (count == 10) {
-            BALLSPEED = BALLSPEED + 20;
+            CARSPEED = CARSPEED + 20;
           }
         }
         
@@ -103,9 +101,6 @@ class GameAreaOne extends BaseGame {
         car = new Car(dimenstions, 4.5, 6);
         carOne = new CarOne(dimenstions, 2, 6);
         carTwo = new CarTwo(dimenstions, 7, 6);
-        word = new Word(
-            dimenstions, 630.0, 9 , randomWordsArray[count].toString());
-        
         if (ocount<1){
         add(car);
         add(carOne);
@@ -115,8 +110,6 @@ class GameAreaOne extends BaseGame {
         }
         count = count + 1;
       }
-      add(word);
-      
       super.update(t);
     }
   }

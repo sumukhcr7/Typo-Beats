@@ -16,7 +16,7 @@ class Car extends SpriteComponent {
   @override
   void update(double t) {
     if (gameOver != true) {
-      y += gameOver ? -1 :((t * -BALLSPEED));
+      y += gameOver ? -1 :((t * -CARSPEED));
     }
   }
 
