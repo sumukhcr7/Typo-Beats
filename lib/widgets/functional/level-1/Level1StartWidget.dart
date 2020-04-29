@@ -250,7 +250,7 @@ class GameWrapperState extends State<GameWrapper> {
         body: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new AssetImage("assets/Roadff.png"),
+                image: new AssetImage("Roadff.png"),
                 fit: BoxFit.cover,
               ),
             ),
